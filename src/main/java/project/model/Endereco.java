@@ -4,15 +4,12 @@ package project.model;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
+@Embeddable
 public class Endereco implements Serializable {
 
     //Será entidade fraca
 
-    @PrimaryKeyJoinColumn
-    @Id
-    @OneToOne
-    @JoinColumn
+
     private  Comprador comprador;
 
     private String Logradouro;

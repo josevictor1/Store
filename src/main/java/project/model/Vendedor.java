@@ -1,17 +1,21 @@
 package project.model;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
+@Table(name = "vendedor")
 public class Vendedor implements Serializable {
 
 
     @Id
-    private  String CNPJ;
+    @Column(name = "cnpj")
+    private  String cnpj;
 
     @NotNull
     private  String RazaoSocial;
@@ -29,10 +33,10 @@ public class Vendedor implements Serializable {
     }
 
     public String getCNPJ() {
-        return CNPJ;
+        return cnpj;
     }
 
     public void setCNPJ(String CNPJ) {
-        this.CNPJ = CNPJ;
+        this.cnpj = CNPJ;
     }
 }

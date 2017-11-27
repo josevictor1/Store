@@ -10,10 +10,10 @@ public class Item implements Serializable {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
 
-    @Column
+
     private String desc;
 
-    @Column
+
     private float val;
 
     protected Item() {

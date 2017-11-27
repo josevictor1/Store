@@ -1,6 +1,6 @@
 package project.model;
 
-
+import project.model.Pedido;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,19 +8,17 @@ import java.io.Serializable;
 @Entity
 public class ItemPedido implements Serializable {
 
-
+    @EmbeddedId
+    private ItemPedidoId id;
 
     private int qtd;
 
-    @Id
-    @ManyToOne
-    @JoinColumn
-    private Item item;
+    public ItemPedido() {
+    }
 
-    @Id
-    @ManyToOne
-    @JoinColumn
-    private Pedido pedido;
+    public ItemPedido(int qtd) {
+        this.qtd = qtd;
+    }
 
     public int getQtd() {
         return qtd;
@@ -30,19 +28,4 @@ public class ItemPedido implements Serializable {
         this.qtd = qtd;
     }
 
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
-    public Pedido getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
 }

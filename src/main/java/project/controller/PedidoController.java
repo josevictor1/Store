@@ -2,7 +2,10 @@ package project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import project.PersistRepository.PedidoRepository;
 import project.model.Pedido;
 
@@ -13,17 +16,15 @@ import java.util.concurrent.atomic.AtomicLong;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
-@RequestMapping("/pedidos")
 public class PedidoController {
 
     @Autowired
     private PedidoRepository pedidoRepository;
 
-    @GetMapping("/")
+    @RequestMapping(value = "/pedido", method = GET)
     public List<Pedido> pedido(){
 
         return (List<Pedido>) pedidoRepository.findAll();
-
     }
 
 
@@ -31,7 +32,7 @@ public class PedidoController {
      * @param id (obrigatorio)
      * @return retonar todos pedidos por id
      */
-    @GetMapping("/{id}")
+    @RequestMapping(value="/item/{id}",method = GET)
     public Pedido pedido(@PathVariable("id") int id){
 
         List<Pedido> dbPedidos = (List<Pedido>) pedidoRepository.findAll();
@@ -46,7 +47,7 @@ public class PedidoController {
         return null;
     }
 
-    @PostMapping
+    @RequestMapping(value="/addPedido", method = POST)
     public String addPedido(@RequestBody Pedido pedido, BindingResult result){
 
         if (result.hasErrors()) {
@@ -58,7 +59,8 @@ public class PedidoController {
         return "Salvo com sucesso!";
     }
 
-    @DeleteMapping("/{id}")
+
+    @RequestMapping(value = "/removePedido/{id}", method = DELETE)
     public String removePedido(@PathVariable int id )
     {
         Pedido pedido = pedidoRepository.findById(id);
@@ -71,6 +73,7 @@ public class PedidoController {
         return "Removido com sucesso!";
     }
 /*
+
     @RequestMapping(value = "/changePedido/{id}", method = PUT)
     public String changePedido(@RequestBody Pedido pedido, @PathVariable int id)
     {
@@ -82,10 +85,13 @@ public class PedidoController {
                 break;
             }
         }
+
         if(i==pedidos.size())
             return "Not exist";
+
         return "OK changed";
     }
+
 */
 
 }

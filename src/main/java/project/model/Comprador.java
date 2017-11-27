@@ -3,21 +3,22 @@ package project.model;
 import javax.persistence.*;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
+
 import java.io.Serializable;
 
 @Entity
-
+@Table(name = "comprador")
 public class Comprador implements Serializable {
 
     @Id
-    private String CPF;
+    @Column(name="cpf_comprador")
+    private String cpf;
 
 
     private String Nome;
     //Será PK
 
-    @OneToOne
+    @Embedded
     private Endereco End;
 
     protected Comprador(){}
@@ -30,12 +31,12 @@ public class Comprador implements Serializable {
         Nome = nome;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
+    public void setCpf(String CPF) {
+        this.cpf = CPF;
     }
 
     public Endereco getEnd() {

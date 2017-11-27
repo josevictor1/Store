@@ -4,8 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import project.model.Comprador;
 
-public interface CompradorRepository extends JpaRepository<Comprador, Long> {
+public interface CompradorRepository extends JpaRepository<Comprador, String> {
 
-    Comprador findOneCpf(String cpf);
+    Comprador findByCpf(String cpf);
 
 }

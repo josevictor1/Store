@@ -7,23 +7,28 @@ import java.util.List;
 
 
 @Entity
+@Table(name="pedido")
 public class Pedido implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "id_pedido")
     private int id;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    private int comprador;
+    @ManyToOne
+    private Comprador comprador;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    private int vendedor;
+    @ManyToOne
+    private Vendedor vendedor;
 
-    @OneToMany(mappedBy = "Pedido")
+    @OneToMany
     private List<ItemPedido> itens;
 
     @Enumerated(EnumType.STRING)
     private State state;
+
+
+
 
     public int getId() {
         return id;
@@ -41,24 +46,24 @@ public class Pedido implements Serializable {
         this.itens = itens;
     }
 
-    protected Pedido()
+    public Pedido()
     {
         state = State.INICIADO;
     }
 
-    public int getComprador() {
+    public Comprador getComprador() {
         return comprador;
     }
 
-    public void setComprador(int  comprador) {
+    public void setComprador(Comprador  comprador) {
         this.comprador = comprador;
     }
 
-    public int  getVendedor() {
+    public Vendedor  getVendedor() {
         return vendedor;
     }
 
-    public void setVendedor(int  vendedor) {
+    public void setVendedor(Vendedor  vendedor) {
         this.vendedor = vendedor;
     }
 
