@@ -1,9 +1,10 @@
 package project.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Item {
+public class Item implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

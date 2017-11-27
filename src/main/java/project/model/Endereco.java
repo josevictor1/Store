@@ -1,15 +1,18 @@
 package project.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Endereco {
+public class Endereco implements Serializable {
 
     //Será entidade fraca
 
-    @JoinColumn(name = "id_comprador")
+    @PrimaryKeyJoinColumn
+    @Id
+    @OneToOne
+    @JoinColumn
     private  Comprador comprador;
 
     private String Logradouro;

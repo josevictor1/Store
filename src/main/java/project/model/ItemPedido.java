@@ -3,21 +3,23 @@ package project.model;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class ItemPedido {
+public class ItemPedido implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
 
-    @Column
+
     private int qtd;
 
-    @OneToOne
+    @Id
+    @ManyToOne
+    @JoinColumn
     private Item item;
 
-    @OneToOne
+    @Id
+    @ManyToOne
+    @JoinColumn
     private Pedido pedido;
 
     public int getQtd() {

@@ -2,23 +2,24 @@ package project.model;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 
 @Entity
-public class Pedido {
+public class Pedido implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
 
-    @Column
+    @ManyToOne(cascade = CascadeType.MERGE)
     private int comprador;
 
-    @Column
+    @ManyToOne(cascade = CascadeType.MERGE)
     private int vendedor;
 
-    @OneToMany
+    @OneToMany(mappedBy = "Pedido")
     private List<ItemPedido> itens;
 
     @Enumerated(EnumType.STRING)

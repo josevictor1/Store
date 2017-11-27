@@ -4,19 +4,20 @@ import javax.persistence.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.io.Serializable;
 
 @Entity
 
-public class Comprador {
+public class Comprador implements Serializable {
 
     @Id
     private String CPF;
 
-    @Column
+
     private String Nome;
     //Será PK
 
-    @Column
+    @OneToOne
     private Endereco End;
 
     protected Comprador(){}

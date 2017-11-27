@@ -3,15 +3,17 @@ package project.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Entity
-public class Vendedor {
+public class Vendedor implements Serializable {
 
 
     @Id
     private  String CNPJ;
 
-    @Column
+    @NotNull
     private  String RazaoSocial;
 
 
